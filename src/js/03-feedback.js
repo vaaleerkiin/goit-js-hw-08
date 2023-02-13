@@ -18,9 +18,11 @@ form.addEventListener(
   }, 1000)
 );
 console.log(localStorage.getItem(LOCAL_KEY));
-email.value = JSON.parse(localStorage.getItem(LOCAL_KEY)).email;
-textarea.value = JSON.parse(localStorage.getItem(LOCAL_KEY)).message;
-
-form.addEventListener('submit', () => {
+if (localStorage.getItem(LOCAL_KEY)) {
+  email.value = JSON.parse(localStorage.getItem(LOCAL_KEY)).email;
+  textarea.value = JSON.parse(localStorage.getItem(LOCAL_KEY)).message;
+}
+form.addEventListener('submit', ev => {
+  ev.preventDefault();
   localStorage.removeItem(LOCAL_KEY);
 });
